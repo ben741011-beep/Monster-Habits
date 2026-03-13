@@ -1,41 +1,85 @@
 const bug = document.getElementById('bug');
-const effect = document.getElementById('effect');
 const feedBtn = document.getElementById('feedBtn');
 const skipBtn = document.getElementById('skipBtn');
 const debug = document.getElementById('debug');
-debug.textContent = 'Test v1'; // 可以改成不同版本號或狀態
-console.log('Running version: Test v1');
+debug.textContent = 'Test v3';
+console.log('Running version: Test v3');
 
-// 點擊餵食
+// 平滑寬度動畫
+function animateWidth(element, from, to, duration) {
+  const startTime = performance.now();
+  function animate(time) {
+    const elapsed = time - startTime;
+    const progress = Math.min(elapsed / duration, 1);
+    const currentWidth = from + (to - from) * progress;
+    element.style.width = currentWidth + 'px';
+    if (progress < 1) requestAnimationFrame(animate);
+  }
+  requestAnimationFrame(animate);
+}
+
+// 點擊餵食：多餅乾飛出
 feedBtn.addEventListener('click', () => {
-  effect.textContent = '🍪'; // 顯示餅乾
-  effect.style.opacity = 1;
-  effect.style.transform = 'translateX(-50%) translateY(-50px)';
+  const numCookies = 5; // 飛出餅乾數量
+  let count = 0;
 
-  // 蟲蟲動畫
-  bug.style.transform = 'scale(1.3)';
-  setTimeout(() => bug.style.transform = 'scale(1)', 500);
+  const cookieInterval = setInterval(() => {
+    const cookie = document.createElement('div');
+    cookie.textContent = '🍪';
+    cookie.style.position = 'absolute';
+    cookie.style.left = '50%';
+    cookie.style.top = '-50px';
+    cookie.style.transform = 'translateX(-50%)';
+    cookie.style.fontSize = '30px';
+    cookie.style.opacity = 1;
+    cookie.style.transition = 'transform 0.5s ease, opacity 0.5s ease';
+    document.querySelector('.container').appendChild(cookie);
 
-  // 效果消失
+    setTimeout(() => {
+      cookie.style.transform = `translateX(-50%) translateY(-100px) rotate(${Math.random()*360}deg)`;
+      cookie.style.opacity = 0;
+    }, 50);
+
+    setTimeout(() => cookie.remove(), 600);
+
+    count++;
+    if (count >= numCookies) clearInterval(cookieInterval);
+  }, 150);
+
+  // 蟲蟲伸長動畫
+  bug.classList.add('stretched');
+  animateWidth(bug, 60, 100, 200);
   setTimeout(() => {
-    effect.style.opacity = 0;
-    effect.style.transform = 'translateX(-50%) translateY(0)';
-  }, 800);
+    animateWidth(bug, 100, 60, 200);
+    setTimeout(() => bug.classList.remove('stretched'), 200);
+  }, 200);
 });
 
 // 點擊不餵食
 skipBtn.addEventListener('click', () => {
-  effect.textContent = '❌'; // 顯示 X
-  effect.style.opacity = 1;
-  effect.style.transform = 'translateX(-50%) translateY(-50px)';
+  const xMark = document.createElement('div');
+  xMark.textContent = '❌';
+  xMark.style.position = 'absolute';
+  xMark.style.left = '50%';
+  xMark.style.top = '-50px';
+  xMark.style.transform = 'translateX(-50%)';
+  xMark.style.fontSize = '30px';
+  xMark.style.opacity = 1;
+  xMark.style.transition = 'transform 0.5s ease, opacity 0.5s ease';
+  document.querySelector('.container').appendChild(xMark);
 
-  // 蟲蟲動畫
-  bug.style.transform = 'scale(0.8)';
-  setTimeout(() => bug.style.transform = 'scale(1)', 500);
-
-  // 效果消失
   setTimeout(() => {
-    effect.style.opacity = 0;
-    effect.style.transform = 'translateX(-50%) translateY(0)';
-  }, 800);
+    xMark.style.transform = `translateX(-50%) translateY(-100px) rotate(${Math.random()*360}deg)`;
+    xMark.style.opacity = 0;
+  }, 50);
+
+  setTimeout(() => xMark.remove(), 600);
+
+  // 蟲蟲縮小動畫
+  bug.classList.add('stretched');
+  animateWidth(bug, 60, 40, 200);
+  setTimeout(() => {
+    animateWidth(bug, 40, 60, 200);
+    setTimeout(() => bug.classList.remove('stretched'), 200);
+  }, 200);
 });

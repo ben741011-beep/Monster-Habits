@@ -23,7 +23,7 @@ body {
 
 .container {
   text-align: center;
-  position: relative; /* 必須有 relative 才能定位 effect */
+  position: relative; /* 必須有 relative 才能定位餅乾 */
 }
 
 .bug {
@@ -34,6 +34,11 @@ body {
   position: relative;
   margin: 0 auto 20px;
   animation: wiggle 1s infinite alternate;
+  transition: width 0.2s ease, border-radius 0.2s ease; /* 平滑寬度與圓角 */
+}
+
+.bug.stretched {
+  border-radius: 40% / 50%; /* 伸長時圓角自然變化 */
 }
 
 .bug::before, .bug::after {
@@ -69,14 +74,3 @@ body {
 
 #skipBtn { background: #f44336; color: white; }
 #skipBtn:hover { background: #d32f2f; }
-
-.effect {
-  position: absolute;
-  top: -50px;
-  left: 50%;
-  transform: translateX(-50%) translateY(0);
-  font-size: 30px;
-  opacity: 0;
-  transition: opacity 0.3s, transform 0.5s;
-  pointer-events: none; /* 不阻擋點擊 */
-}
