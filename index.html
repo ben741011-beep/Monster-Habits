@@ -1,78 +1,16 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="zh-TW">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>奶嘴蟲蟲</title>
-<style>
-body{font-family:sans-serif;text-align:center;background:#f2f7ff;margin:0;padding:20px}
-.card{background:white;border-radius:20px;padding:20px;max-width:420px;margin:auto;box-shadow:0 10px 30px rgba(0,0,0,0.1)}
-button{font-size:20px;padding:14px 20px;border-radius:12px;border:none;margin:10px;cursor:pointer}
-.yes{background:#ffb3b3}
-.no{background:#b8f5c4}
-.stars{font-size:28px;margin-top:10px}
-svg{width:160px}
-</style>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>精緻蟲蟲互動</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-<div class="card">
-<h1>奶嘴蟲蟲</h1>
-
-<svg viewBox="0 0 200 120">
-<circle cx="40" cy="60" r="20" fill="#9be7ff"/>
-<circle cx="80" cy="60" r="20" fill="#9be7ff"/>
-<circle cx="120" cy="60" r="20" fill="#9be7ff"/>
-<circle cx="160" cy="60" r="20" fill="#9be7ff"/>
-
-<circle cx="40" cy="55" r="4" fill="#000"/>
-<circle cx="52" cy="55" r="4" fill="#000"/>
-
-<circle cx="46" cy="70" r="6" fill="#ff8ac6"/>
-<rect x="43" y="75" width="6" height="8" fill="#ff8ac6"/>
-</svg>
-
-<p id="status">今天有沒有餵奶嘴蟲蟲？</p>
-
-<button class="yes" onclick="feed(true)">有吃奶嘴</button>
-<button class="no" onclick="feed(false)">沒有吃奶嘴</button>
-
-<div class="stars" id="stars"></div>
-
+<div class="container">
+  <div class="bug" id="bug"></div>
+  <button id="feedBug">餵食蟲蟲</button>
 </div>
-
-<script>
-let days = Number(localStorage.getItem('noPacifierDays')||0)
-
-function render(){
-let stars=''
-for(let i=0;i<days;i++){stars+='⭐'}
-document.getElementById('stars').innerText=stars
-
-let msg="今天有沒有餵奶嘴蟲蟲？"
-
-if(days>=7){
-msg="🎉 奶嘴蟲蟲餓到搬家了！你成功戒奶嘴！"
-}
-
-document.getElementById('status').innerText=msg
-}
-
-function feed(used){
-if(used){
-days=0
-alert("奶嘴蟲蟲吃飽了！")
-}else{
-days++
-alert("奶嘴蟲蟲今天餓肚子！")
-}
-
-localStorage.setItem('noPacifierDays',days)
-render()
-}
-
-render()
-</script>
-
+<script src="script.js"></script>
 </body>
 </html>

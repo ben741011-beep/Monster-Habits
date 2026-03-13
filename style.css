@@ -1,0 +1,55 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: #f0f8ff;
+  font-family: sans-serif;
+}
+
+.container {
+  text-align: center;
+}
+
+.bug {
+  width: 60px;
+  height: 30px;
+  background: linear-gradient(45deg, #6b4226, #a67c52);
+  border-radius: 50% / 50%;
+  position: relative;
+  margin: 0 auto 20px;
+  animation: wiggle 1s infinite alternate;
+}
+
+.bug::before, .bug::after {
+  content: '';
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  background: black;
+  border-radius: 50%;
+  top: -6px;
+}
+
+.bug::before { left: 8px; }
+.bug::after { right: 8px; }
+
+@keyframes wiggle {
+  0% { transform: rotate(-10deg); }
+  100% { transform: rotate(10deg); }
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  background: #4caf50;
+  color: white;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+button:hover {
+  background: #45a049;
+}
