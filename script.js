@@ -8,8 +8,8 @@ feedBtn.addEventListener('click', () => {
   effect.textContent = '🍪'; // 顯示餅乾
   effect.style.opacity = 1;
   effect.style.transform = 'translateX(-50%) translateY(-50px)';
-  
-  // 蟲蟲動畫（放大搖擺）
+
+  // 蟲蟲動畫
   bug.style.transform = 'scale(1.3)';
   setTimeout(() => bug.style.transform = 'scale(1)', 500);
 
@@ -26,7 +26,7 @@ skipBtn.addEventListener('click', () => {
   effect.style.opacity = 1;
   effect.style.transform = 'translateX(-50%) translateY(-50px)';
 
-  // 蟲蟲動畫（縮小皺眉）
+  // 蟲蟲動畫
   bug.style.transform = 'scale(0.8)';
   setTimeout(() => bug.style.transform = 'scale(1)', 500);
 

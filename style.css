@@ -9,6 +9,7 @@ body {
 
 .container {
   text-align: center;
+  position: relative; /* 必須有 relative 才能定位 effect */
 }
 
 .bug {
@@ -59,8 +60,9 @@ body {
   position: absolute;
   top: -50px;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translateX(-50%) translateY(0);
   font-size: 30px;
   opacity: 0;
   transition: opacity 0.3s, transform 0.5s;
+  pointer-events: none; /* 不阻擋點擊 */
 }
