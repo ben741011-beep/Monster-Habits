@@ -5,7 +5,7 @@ const skipBtn = document.getElementById('skipBtn');
 const debug = document.getElementById('debug');
 const message = document.getElementById('message');
 
-debug.textContent = 'Test v5';
+debug.textContent = 'Test v6';
 
 let segments = 7;
 const maxSegments = 10;
@@ -15,7 +15,6 @@ function renderBug() {
   for (let i = 0; i < segments; i++) {
     const span = document.createElement('span');
     span.className = 'segment';
-    span.textContent = '🍼';
     bodyDiv.appendChild(span);
   }
 }
@@ -60,7 +59,6 @@ skipBtn.addEventListener('click', () => {
     setTimeout(() => xMark.remove(), 600);
     message.textContent = '';
   } else {
-    // 剩最後一個，蟲蟲離開
     message.textContent = '掰掰，我要去找下個小朋友了 😛';
     bug.classList.add('exit');
     feedBtn.disabled = true;

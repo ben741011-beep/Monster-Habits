@@ -28,10 +28,9 @@ body {
 
 .bug {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 5px;
   margin: 0 auto 20px;
-  transform-origin: center;
 }
 
 .head {
@@ -39,16 +38,49 @@ body {
   height: 50px;
   background: linear-gradient(45deg,#6b4226,#a67c52);
   border-radius: 50%;
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 24px; /* 奶嘴 emoji */
-  transition: all 0.2s ease;
+}
+
+.eye {
+  width: 8px;
+  height: 8px;
+  background: white;
+  border-radius: 50%;
+  position: absolute;
+  top: 15px;
+}
+
+.eye.left { left: 12px; }
+.eye.right { right: 12px; }
+
+.antenna {
+  width: 2px;
+  height: 20px;
+  background: black;
+  position: absolute;
+  top: -20px;
+  border-radius: 1px;
+}
+
+.antenna.left { left: 10px; transform: rotate(-20deg); transform-origin: bottom; }
+.antenna.right { right: 10px; transform: rotate(20deg); transform-origin: bottom; }
+
+.pacifier {
+  width: 12px;
+  height: 12px;
+  background: #f4c2c2;
+  border-radius: 50%;
+  position: absolute;
+  bottom: -4px;
 }
 
 .body {
   display: flex;
   gap: 5px;
+  margin-top: 5px;
 }
 
 .segment {
@@ -56,12 +88,21 @@ body {
   height: 30px;
   background: linear-gradient(45deg,#6b4226,#a67c52);
   border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 16px;
-  transition: all 0.2s ease;
+  position: relative;
 }
+
+.segment::before, .segment::after {
+  content: '';
+  width: 4px;
+  height: 10px;
+  background: black;
+  position: absolute;
+  bottom: 0;
+  border-radius: 2px;
+}
+
+.segment::before { left: 4px; transform: rotate(-20deg); }
+.segment::after { right: 4px; transform: rotate(20deg); }
 
 .bug.exit {
   animation: crawlAway 2s linear forwards;
