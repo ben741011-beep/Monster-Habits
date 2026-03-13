@@ -2,6 +2,9 @@ const bug = document.getElementById('bug');
 const effect = document.getElementById('effect');
 const feedBtn = document.getElementById('feedBtn');
 const skipBtn = document.getElementById('skipBtn');
+const debug = document.getElementById('debug');
+debug.textContent = 'Test v1'; // 可以改成不同版本號或狀態
+console.log('Running version: Test v1');
 
 // 點擊餵食
 feedBtn.addEventListener('click', () => {
